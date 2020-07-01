@@ -4,9 +4,14 @@
 
     <div class="container shadow p-5 mt-5">
       <!-- <b-progress value="57" max="100" class="mb-3" show-value variant="danger"></b-progress> -->
-      <div v-for="bar in bars" class="row mb-1" :key="bar.id">
-        <div class="col-sm-12 pt-2">
-          <b-progress :value="bar.value" class="popupBlocks" show-value :variant="bar.variant" :key="bar.id"></b-progress>
+      <div v-for="(bar,index) in bars" class="row mb-1" :key="bar.id">
+         <div class="col-sm-2" >
+           <b-badge pill variant="primary" v-if="index == one_pointer">-> </b-badge>
+            <b-badge pill variant="success" v-if="index == two_pointer">-> </b-badge>
+           </div>
+         
+        <div class="col-sm-10 pt-2">
+          <b-progress  :value="bar.value" class="popupBlocks" show-value :variant="bar.variant" :key="bar.id"></b-progress>
         </div>
       </div>
 
@@ -29,7 +34,7 @@
         
         <div class="col-lg-4">
           <button class="btn btn-primary" v-on:click="draw()">Reset Array</button>
-          <button class="btn btn-info ml-5" v-on:click="bubbleSort()">Sort</button>
+          <button class="btn btn-info ml-5" v-on:click="bubbleSort()">Bubble Sort</button>
         </div>
       </div>
 
@@ -49,6 +54,9 @@
         variant: ['success', 'danger', 'dark', 'warning', 'primary', 'info'],
         array: [],
         bars: [],
+        timer : null,
+        one_pointer : 0,
+        two_pointer : 0,
       }
     },
     mounted() {
@@ -79,19 +87,36 @@
         var array = this.array
         let count = 1
         console.log(this.array)
-        setTimeout(() => {
-          for (var i = 0; i < array.length; i++) {
-            for (var j = i; j < array.length; j++) {
-              if (array[i] > array[j]) {
+
+      
+          for (let i = 0; i < array.length; i++) {
+             
+            
+            for (let j = i; j < array.length; j++) {
+                
+           this.timer =  setInterval(()=>{
+             
+                if (this.array[i] > this.array[j]) {
+                   this.one_pointer = i
+              this.two_pointer = j
                 var temp_bar = this.bars[i].value
                 this.bars[i].value = this.bars[j].value
                 this.bars[j].value = temp_bar
                 var temp = array[i];
                 array[i] = array[j];
                 array[j] = temp;
+              
               }
+             }, 2000 * i) 
+             
+               
             } 
+           
           }
+        
+
+        setTimeout(() => {
+          
           }, 2000 * count++)
        
       }
