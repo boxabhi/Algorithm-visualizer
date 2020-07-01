@@ -2,15 +2,15 @@
   <div class="hello">
     <h1 class="font-weight-bold text-uppercase">{{ msg }}</h1>
 
-    <div class="container shadow p-5 mt-5">
+    <div class="container shadow p-5 mt-5 mb-5">
       <!-- <b-progress value="57" max="100" class="mb-3" show-value variant="danger"></b-progress> -->
       <div v-for="(bar,index) in bars" class="row mb-1" :key="bar.id">
-         <div class="col-sm-2" >
+         <div class="col-2" >
            <b-badge pill variant="primary" v-if="index == one_pointer">-> </b-badge>
             <b-badge pill variant="success" v-if="index == two_pointer">-> </b-badge>
            </div>
          
-        <div class="col-sm-10 pt-2">
+        <div class="col-10 pt-2">
           <b-progress  :value="bar.value" class="popupBlocks" show-value :variant="bar.variant" :key="bar.id"></b-progress>
         </div>
       </div>
@@ -85,8 +85,7 @@
       },
       bubbleSort() {
         var array = this.array
-        let count = 1
-        console.log(this.array)
+       
 
       
           for (let i = 0; i < array.length; i++) {
@@ -115,9 +114,7 @@
           }
         
 
-        setTimeout(() => {
-          
-          }, 2000 * count++)
+      
        
       }
     }
