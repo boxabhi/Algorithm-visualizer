@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello pb-5 mb-5">
     <h1 class="font-weight-bold text-uppercase">{{ msg }}</h1>
 
     <div class="container shadow p-5 mt-5 mb-5">
@@ -32,7 +32,7 @@
           </div>
         </div>
         
-        <div class="col-lg-4">
+        <div class="col-lg-4 mt-4">
           <button class="btn btn-primary" v-on:click="draw()">Reset Array</button>
           <button class="btn btn-info ml-5" v-on:click="bubbleSort()">Bubble Sort</button>
         </div>
